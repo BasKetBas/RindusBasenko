@@ -3,7 +3,7 @@ package com.amazon.pom;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class HomeAmazonPage extends BasePage{
@@ -37,14 +37,17 @@ public class HomeAmazonPage extends BasePage{
     }
 
     public void clickAcceptCookiesButton(){
+        waiter.until(ExpectedConditions.visibilityOf(acceptCookiesButton));
         acceptCookiesButton.click();
     }
 
     public  void searchNameOfProduct(String nameOfProduct){
+        waiter.until(ExpectedConditions.visibilityOf(searchField));
         searchField.sendKeys(nameOfProduct);
     }
 
     public void clickSearchButton(){
+        waiter.until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
     }
 

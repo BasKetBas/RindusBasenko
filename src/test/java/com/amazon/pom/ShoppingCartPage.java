@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+
 
 public class ShoppingCartPage extends BasePage {
 
@@ -24,11 +26,11 @@ public class ShoppingCartPage extends BasePage {
     @FindBy(xpath = "//span[@data-a-class='quantity']")
     private WebElement productReduction;
 
-    @FindBy(xpath = "//span[@data-a-class='quantity'][2]")
+    @FindBy(xpath = "//span[@data-a-class='quantity']")
     private WebElement selectingProductReduction;
 
     @FindBy(xpath = "//span[@id='sc-buy-box-ptc-button']")
-    private WebElement chekingBasketButton;
+    private WebElement checkingBasketButton;
 
     private ShoppingCartPage(){
         super();
@@ -48,27 +50,36 @@ public class ShoppingCartPage extends BasePage {
     }
 
     public void clickProceedToRetailCheckoutButton(){
+        waiter.until(ExpectedConditions.visibilityOf(proceedToRetailCheckoutButton));
         proceedToRetailCheckoutButton.click();
     }
 
     public void clickHomePageRefund(){
+        waiter.until(ExpectedConditions.visibilityOf(homePageRefund));
         homePageRefund.click();
     }
 
     public void clickSubmitHomePageRefund(){
+        waiter.until(ExpectedConditions.visibilityOf(submitHomePageRefund));
         submitHomePageRefund.click();
     }
 
     public void clickProductReduction(){
+        waiter.until(ExpectedConditions.visibilityOf(productReduction));
         productReduction.click();
     }
 
-    public void selectingProductReduction(){
-        selectingProductReduction.click();
+    public int selectingProductReduction(){
+        int index=0;
+        waiter.until(ExpectedConditions.visibilityOf(selectingProductReduction));
+        Select select=new Select(selectingProductReduction);
+        select.selectByIndex(index);
+        return index;
     }
 
     public void chekingBasketButton(){
-        chekingBasketButton.click();
+        waiter.until(ExpectedConditions.visibilityOf(checkingBasketButton));
+        checkingBasketButton.click();
     }
 
 

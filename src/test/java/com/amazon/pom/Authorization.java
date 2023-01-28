@@ -47,18 +47,22 @@ public class Authorization extends BasePage{
     }
 
     public void pressAuthorizationButton(){
+        waiter.until(ExpectedConditions.visibilityOf(authorizationButton));
         authorizationButton.click();
     }
 
     public void clickContinueButton(){
+        waiter.until(ExpectedConditions.visibilityOf(continueButton));
         continueButton.click();
     }
 
     public void inputPasswordField(String password){
+        waiter.until(ExpectedConditions.visibilityOf(inputPasswordField));
         inputPasswordField.sendKeys(password);
     }
 
     public void clickSignInSubmitButton(){
+        waiter.until(ExpectedConditions.visibilityOf(signInSubmitButton));
         signInSubmitButton.click();
     }
 

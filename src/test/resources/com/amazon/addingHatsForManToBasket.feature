@@ -7,13 +7,10 @@ Feature: An example
     Then result page will open
 
     When chose first hat
-    And  press chosen hat
-    Then on a page with describing the selected hat
-
-    When increased the number of hats to two
+    And increased the number of hats to two
     And press add to basket button
     And press process order button
-    Then on login page
+    Then added two hats
 
     When fill "+34633919463"
     And press continue button
@@ -31,11 +28,4 @@ Feature: An example
     And press checkout button
     Then on a process order page
     And number of hats one
-
-
-
-
-
-
-
 
