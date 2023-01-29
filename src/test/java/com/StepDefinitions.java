@@ -1,9 +1,6 @@
 package com;
 
-import com.amazon.pom.Authorization;
-import com.amazon.pom.HomeAmazonPage;
-import com.amazon.pom.ResultPage;
-import com.amazon.pom.ShoppingCartPage;
+import com.amazon.pom.*;
 import com.amazon.tools.DriverStorage;
 import io.cucumber.java.en.*;
 
@@ -12,17 +9,18 @@ import org.junit.jupiter.api.Assertions.*;
 import org.openqa.selenium.support.ui.Select;
 
 public class StepDefinitions {
-    private HomeAmazonPage homeAmazonPage=HomeAmazonPage.getInstance();
-    private ShoppingCartPage shoppingCartPage=ShoppingCartPage.getInstance();
-    private ResultPage resultPage=ResultPage.getInstance();
+    private HomeAmazonPage homeAmazonPage = HomeAmazonPage.getInstance();
+    private ShoppingCartPage shoppingCartPage = ShoppingCartPage.getInstance();
+    private ResultPage resultPage = ResultPage.getInstance();
 
-    private Authorization authorization=Authorization.getInstance();
-    private DriverStorage driverStorage=DriverStorage.getInstance();
+    private Authorization authorization = Authorization.getInstance();
+    private DriverStorage driverStorage = DriverStorage.getInstance();
+    private NotificationPage notificationPage = NotificationPage.getInstance();
 
 
     @Given("main page is open")
     public void openMainPage() {
-       Assertions.assertThat(driverStorage.getDriver().getTitle()).isEqualTo("Amazon.es: compra online de electrónica, libros, deporte, hogar, moda y mucho más.");
+        Assertions.assertThat(driverStorage.getDriver().getTitle()).isEqualTo("Amazon.es: compra online de electrónica, libros, deporte, hogar, moda y mucho más.");
     }
 
     @When("filling search field {string}")
@@ -69,52 +67,52 @@ public class StepDefinitions {
     }
 
     @And("press process order button")
-    public void pressProcessOrderButton() {
-        shoppingCartPage.clickProceedToRetailCheckoutButton();
-    }
+//    public void pressProcessOrderButton() {
+//        shoppingCartPage.clickProceedToRetailCheckoutButton();
+//    }
 
     @Then("added two hats")
     public void addedTwoHats() {
-        Assertions.assertThat(resultPage.clickAmountSelectedProduct()).isEqualTo(2);
+        Assertions.assertThat(shoppingCartPage.getNumberOfProductBasketButton()).contains("2");
     }
 
     @When("fill {string}")
-    public void fill(String arg0) {
-        authorization.fillAuthorizationField(arg0);
-    }
+//    public void fill(String arg0) {
+//        authorization.fillAuthorizationField(arg0);
+//    }
 
     @And("press continue button")
-    public void pressContinueButton() {
-        authorization.clickContinueButton();
-    }
+//    public void pressContinueButton() {
+//        authorization.clickContinueButton();
+//    }
 
     @Then("on a password page")
     public void onAPasswordPage() {
     }
 
     @When("fill password field {string}")
-    public void fillPasswordField(String arg0) {
-        authorization.inputPasswordField(arg0);
-    }
+//    public void fillPasswordField(String arg0) {
+//        authorization.inputPasswordField(arg0);
+//    }
 
     @And("press login button")
-    public void pressLoginButton() {
-        authorization.clickSignInSubmitButton();
-    }
+    //public void pressLoginButton() {
+//        authorization.clickSignInSubmitButton();
+//    }
 
     @Then("on a process order page")
     public void onAProcessOrderPage() {
     }
 
     @When("press amazon area")
-    public void pressAmazonArea() {
-        shoppingCartPage.clickHomePageRefund();
-    }
+    //public void pressAmazonArea() {
+    //   shoppingCartPage.clickHomePageRefund();
+    //}
 
     @And("press back to cart button")
-    public void pressBackToCartButton() {
-        shoppingCartPage.clickSubmitHomePageRefund();
-    }
+    //public void pressBackToCartButton() {
+    //  shoppingCartPage.clickSubmitHomePageRefund();
+    //}
 
     @Then("on a basket page")
     public void onABasketPage() {
@@ -122,6 +120,7 @@ public class StepDefinitions {
 
     @When("reduce the number of hats to one")
     public void reduceTheNumberOfHatsToOne() {
+        shoppingCartPage.clickProductReduction();
         shoppingCartPage.selectingProductReduction();
     }
 
@@ -132,6 +131,21 @@ public class StepDefinitions {
 
     @And("number of hats one")
     public void numberOfHatsOne() {
-        Assertions.assertThat(shoppingCartPage.selectingProductReduction()).isEqualTo(1);
+
+        Assertions.assertThat(shoppingCartPage.getNumberOfProductBasketButton()).contains("1");
+    }
+
+    @And("notification page is open")
+    public void notificationPageIsOpen() {
+        notificationPage.pressBasketButton();
+
+    }
+
+    @Then("price is correctly change")
+    public void priceIsCorrectlyChange() {
+        double total = Double.parseDouble(shoppingCartPage.getSubtotal());
+        double costItem = Double.parseDouble(shoppingCartPage.getCostOfOneItem());
+        Assertions.assertThat(total).isEqualTo(costItem);
+
     }
 }

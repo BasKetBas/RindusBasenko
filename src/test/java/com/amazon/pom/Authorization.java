@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Authorization extends BasePage{
+public class Authorization extends BasePage {
 
     private static Authorization authorization;
 
@@ -24,15 +24,15 @@ public class Authorization extends BasePage{
     @FindBy(xpath = "//input[@id='signInSubmit']")
     private WebElement signInSubmitButton;
 
-    private Authorization(){
+    private Authorization() {
         super();
 
         PageFactory.initElements(driver, this);
     }
 
-    public static Authorization getInstance(){
-        if(authorization==null){
-            authorization=new Authorization();
+    public static Authorization getInstance() {
+        if (authorization == null) {
+            authorization = new Authorization();
         }
         return authorization;
     }
@@ -41,30 +41,30 @@ public class Authorization extends BasePage{
         return authorization;
     }
 
-    public void fillAuthorizationField(String numberPhoneOfAccount){
-        waiter.until(ExpectedConditions.visibilityOf(authorizationField));
-        authorizationField.sendKeys(numberPhoneOfAccount);
-    }
-
-    public void pressAuthorizationButton(){
-        waiter.until(ExpectedConditions.visibilityOf(authorizationButton));
-        authorizationButton.click();
-    }
-
-    public void clickContinueButton(){
-        waiter.until(ExpectedConditions.visibilityOf(continueButton));
-        continueButton.click();
-    }
-
-    public void inputPasswordField(String password){
-        waiter.until(ExpectedConditions.visibilityOf(inputPasswordField));
-        inputPasswordField.sendKeys(password);
-    }
-
-    public void clickSignInSubmitButton(){
-        waiter.until(ExpectedConditions.visibilityOf(signInSubmitButton));
-        signInSubmitButton.click();
-    }
+//    public void fillAuthorizationField(String numberPhoneOfAccount){
+//        waiter.until(ExpectedConditions.visibilityOf(authorizationField));
+//        authorizationField.sendKeys(numberPhoneOfAccount);
+//    }
+//
+//    public void pressAuthorizationButton(){
+//        waiter.until(ExpectedConditions.visibilityOf(authorizationButton));
+//        authorizationButton.click();
+//    }
+//
+//    public void clickContinueButton(){
+//        waiter.until(ExpectedConditions.visibilityOf(continueButton));
+//        continueButton.click();
+//    }
+//
+//    public void inputPasswordField(String password){
+//        waiter.until(ExpectedConditions.visibilityOf(inputPasswordField));
+//        inputPasswordField.sendKeys(password);
+//    }
+//
+//    public void clickSignInSubmitButton(){
+//        waiter.until(ExpectedConditions.visibilityOf(signInSubmitButton));
+//        signInSubmitButton.click();
+//    }
 
 
 }

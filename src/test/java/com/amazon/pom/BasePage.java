@@ -17,11 +17,11 @@ public class BasePage {
     }
 
 
-    public void openPage(String page){
+    public void openPage(String page) {
         this.driver.get(page);
     }
 
-    public void close(){
+    public void close() {
         this.driver.quit();
     }
 

@@ -6,7 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
-public class HomeAmazonPage extends BasePage{
+public class HomeAmazonPage extends BasePage {
 
     private static HomeAmazonPage homeAmazonPage;
 
@@ -20,14 +20,15 @@ public class HomeAmazonPage extends BasePage{
     @FindBy(xpath = "//input[@id='nav-search-submit-button']")
     private WebElement searchButton;
 
-    private HomeAmazonPage(){
+    private HomeAmazonPage() {
         super();
 
         PageFactory.initElements(driver, this);
     }
-    public static HomeAmazonPage getInstance(){
-        if(homeAmazonPage==null){
-            homeAmazonPage=new HomeAmazonPage();
+
+    public static HomeAmazonPage getInstance() {
+        if (homeAmazonPage == null) {
+            homeAmazonPage = new HomeAmazonPage();
         }
         return homeAmazonPage;
     }
@@ -36,17 +37,17 @@ public class HomeAmazonPage extends BasePage{
         return homeAmazonPage;
     }
 
-    public void clickAcceptCookiesButton(){
+    public void clickAcceptCookiesButton() {
         waiter.until(ExpectedConditions.visibilityOf(acceptCookiesButton));
         acceptCookiesButton.click();
     }
 
-    public  void searchNameOfProduct(String nameOfProduct){
+    public void searchNameOfProduct(String nameOfProduct) {
         waiter.until(ExpectedConditions.visibilityOf(searchField));
         searchField.sendKeys(nameOfProduct);
     }
 
-    public void clickSearchButton(){
+    public void clickSearchButton() {
         waiter.until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
     }

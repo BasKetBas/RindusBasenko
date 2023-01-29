@@ -25,49 +25,50 @@ public class ResultPage extends BasePage {
     @FindBy(xpath = "//select[@id='quantity']")
     private WebElement amountSelectedProduct;
 
-    private ResultPage(){
+    private ResultPage() {
         super();
 
         PageFactory.initElements(driver, this);
     }
-    public static ResultPage getInstance(){
-        if(resultPage==null){
-            resultPage=new ResultPage();
+
+    public static ResultPage getInstance() {
+        if (resultPage == null) {
+            resultPage = new ResultPage();
         }
         return resultPage;
     }
+
     public static ResultPage getResultPage() {
         return resultPage;
     }
 
 
-    public void choosingOfProduct(){
+    public void choosingOfProduct() {
         waiter.until(ExpectedConditions.visibilityOf(selectedProduct));
         selectedProduct.click();
     }
 
-    public void choosingAmountOfProduct(){
+    public void choosingAmountOfProduct() {
         waiter.until(ExpectedConditions.visibilityOf(amountOfProduct));
         amountOfProduct.click();
 
     }
 
-    public int clickAmountSelectedProduct(){
-        int index=1;
-        waiter.
-                until(ExpectedConditions.elementToBeClickable(amountSelectedProduct));
-        Select select=new Select(amountSelectedProduct);
+    public int clickAmountSelectedProduct() {
+        int index = 1;
+        waiter.until(ExpectedConditions.elementToBeClickable(amountSelectedProduct));
+        Select select = new Select(amountSelectedProduct);
         select.selectByIndex(index);
         return index;
 
     }
 
-    public void clickBasketAdditionButton(){
+    public void clickBasketAdditionButton() {
         waiter.until(ExpectedConditions.visibilityOf(basketAdditionButton));
         basketAdditionButton.click();
     }
 
-    public void clickShoppingCartButton(){
+    public void clickShoppingCartButton() {
         waiter.until(ExpectedConditions.visibilityOf(shoppingCartButton));
         shoppingCartButton.click();
     }

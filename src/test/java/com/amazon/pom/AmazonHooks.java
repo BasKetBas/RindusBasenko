@@ -10,7 +10,7 @@ public class AmazonHooks {
 
     private static Authorization authorization;
 
-    @Before(order=1)
+    @Before(order = 1)
     public void initialization() {
         homeAmazonPage = HomeAmazonPage.getInstance();
         homeAmazonPage.openPage("https://www.amazon.es/");
@@ -19,8 +19,8 @@ public class AmazonHooks {
 
     }
 
-    @Before(order=2)
-    public void authorization(){
+    @Before(order = 2)
+    public void authorization() {
 //        authorization = Authorization.getInstance();
 //        authorization.pressAuthorizationButton();
 //        authorization.fillAuthorizationField("+34633919463");
